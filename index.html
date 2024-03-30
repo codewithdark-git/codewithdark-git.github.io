@@ -1042,7 +1042,7 @@
           <!-- Success message placeholder -->
           <div id="success-message" style="color: green;"></div>
 
-          <form class="form" data-form>
+          <form action="#" class="form" data-form>
             <div class="input-wrapper">
               <input type="text" name="name" class="form-input" placeholder="Full name" required data-form-input>
               <input type="text" name="subject" class="form-input" placeholder="Subject" required data-form-input>
@@ -1056,40 +1056,6 @@
             </button>
           </form>
         </section>
-
-        <!-- JavaScript to handle form submission and display error/success messages -->
-        <!-- <script>
-          document.addEventListener('DOMContentLoaded', function () {
-            const form = document.querySelector('.form');
-            const errorMessage = document.getElementById('error-message');
-            const successMessage = document.getElementById('success-message');
-            const loader = document.querySelector('.loader');
-
-            form.addEventListener('submit', async function (event) {
-              event.preventDefault();
-              // Show loading animation
-              loader.style.display = 'inline-block';
-
-              const formData = new FormData(form);
-              const response = await fetch('/send-email', {
-                method: 'POST',
-                body: formData
-              });
-
-              const data = await response.json();
-              if (response.ok) {
-                errorMessage.textContent = '';  // Clear error message
-                successMessage.textContent = data.message;  // Display success message
-                form.reset();  // Clear the form
-              } else {
-                errorMessage.textContent = data.message;  // Display error message
-              }
-
-              // Hide loading animation
-              loader.style.display = 'none';
-            });
-          });
-        </script> -->
       </article>
 
     </div>
@@ -1116,24 +1082,3 @@
 
 </html> -->
 
-<!-- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
-</head>
-<body>
-    <h1>Contact Form</h1>
-    <form action="/send-email" method="post">
-        <label for="fullname">Full Name:</label>
-        <input type="text" id="fullname" name="fullname" required><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
-        <label for="message">Message:</label><br>
-        <textarea id="message" name="message" rows="4" required></textarea><br>
-        <button type="submit">Send Message</button>
-    </form>
-</body>
-</html> -->
