@@ -1,5 +1,20 @@
 'use strict';
 
+const blogs = [
+  {
+    title: "How to Build a Portfolio",
+    category: "tech",
+    content: "blogs/xyz.md",
+    thumbnail: "images/blog1.jpg"
+  },
+  {
+    title: "Travel Tips for Digital Nomads",
+    category: "lifestyle",
+    content: "blogs/abc.md",
+    thumbnail: "images/blog2.jpg"
+  }
+];
+
 
 
 // element toggle function
@@ -156,4 +171,45 @@ for (let i = 0; i < navigationLinks.length; i++) {
     }
 
   });
+}
+
+const blogContentContainer = document.querySelector("[data-blog-content]");
+
+const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+portfolioItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const blogUrl = item.dataset.blogUrl; 
+
+    if (blogUrl) {
+      fetch(blogUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then(markdown => {
+          
+          const blogListContainer = document.getElementById('blog-list');
+          blogListContainer.innerHTML = marked.parse(markdown); 
+
+          // Add a class to hide portfolio items and show blog content
+          document.getElementById('portfolio').classList.add('hidden');
+          blogListContainer.classList.remove('hidden'); 
+        })
+        .catch(error => {
+          console.error('Error fetching or parsing Markdown:', error);
+          
+          const blogListContainer = document.getElementById('blog-list');
+          blogListContainer.innerHTML = `<p>Error loading blog post.</p>`;
+        });
+    }
+  });
+});
+
+// Function to show the portfolio section again (if needed)
+const showPortfolio = () => {
+  document.getElementById('portfolio').classList.remove('hidden');
+  document.getElementById('blog-list').classList.add('hidden');
 }
